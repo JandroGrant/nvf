@@ -10,21 +10,30 @@
   outputs = {
     self,
     nixpkgs,
+    nvf,
     ...
-  } @ inputs: {
-    packages."x86_64-linux" = let
-      neovimConfigured = inputs.nvf.lib.neovimConfiguration {
-        inherit (nixpkgs.legacyPackages."x86_64-linux") pkgs;
-        modules = [
-          ./default.nix
-        ];
-      };
-    in {
-      # Set the default package to the wrapped instance of Neovim.
-      # This will allow running your Neovim configuration with
-      # `nix run` and in addition, sharing your configuration with
-      # other users in case your repository is public.
-      default = neovimConfigured.neovim;
+  }: let
+    darwinSystems = {
+      aarch64 = "aarch64-darwin";
     };
+
+    linuxSystems = {
+      x86_64 = "x86_64-linux";
+      aarch64 = "aarch64-linux";
+    };
+
+    allSystems = builtins.attrValues darwinSystems ++ builtins.attrValues linuxSystems;
+    forAllSystems = func: (nixpkgs.lib.genAttrs allSystems func);
+  in {
+    lib.neovimConfiguration = {system}:
+      (nvf.lib.neovimConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [./default.nix];
+      }).neovim;
+
+    packages = forAllSystems (system: {
+      default = self.lib.neovimConfiguration {inherit system;};
+      nvim = self.lib.neovimConfiguration {inherit system;};
+    });
   };
 }
