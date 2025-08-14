@@ -35,5 +35,7 @@
       default = self.lib.neovimConfiguration {inherit system;};
       nvim = self.lib.neovimConfiguration {inherit system;};
     });
+
+    modules.homeManager.default = self.lib.neovimConfiguration.homeManagerModules.default;
   };
 }
