@@ -2,7 +2,7 @@
   description = "Jandro's NVF Config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
     nvf.url = "github:NotAShelf/nvf";
   };
 
