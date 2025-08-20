@@ -99,6 +99,13 @@
         noice = {
           enable = true;
         };
+        borders = {
+          enable = true;
+          plugins = {
+            nvim-cmp.enable = true;
+          };
+        };
+        illuminate.enable = true;
       };
 
       utility = {
