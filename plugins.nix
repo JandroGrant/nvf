@@ -21,6 +21,7 @@
         lua.enable = true;
         go.enable = true;
         clang.enable = true;
+        zig.enable = true;
       };
 
       diagnostics = {
