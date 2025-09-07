@@ -70,7 +70,15 @@
         vim-fugitive.enable = true;
       };
 
-      notes.todo-comments.enable = true;
+      notes = {
+        todo-comments = {
+          enable = true;
+        };
+        obsidian = {
+          enable = true;
+        };
+      };
+
       statusline.lualine.enable = true;
 
       terminal.toggleterm = {
