@@ -74,9 +74,6 @@
         todo-comments = {
           enable = true;
         };
-        obsidian = {
-          enable = true;
-        };
       };
 
       statusline.lualine.enable = true;
