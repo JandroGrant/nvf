@@ -23,6 +23,7 @@
         clang.enable = true;
         zig.enable = true;
         markdown.enable = true;
+        odin.enable = true;
       };
 
       diagnostics = {
@@ -73,9 +74,6 @@
 
       notes = {
         todo-comments = {
-          enable = true;
-        };
-        obsidian = {
           enable = true;
         };
       };
