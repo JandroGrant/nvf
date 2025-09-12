@@ -9,6 +9,8 @@
         trouble.enable = true;
       };
 
+      fzf-lua.enable = true;
+
       languages = {
         enableDAP = true;
         enableExtraDiagnostics = true;
@@ -22,8 +24,14 @@
         go.enable = true;
         clang.enable = true;
         zig.enable = true;
-        markdown.enable = true;
         odin.enable = true;
+
+        markdown = {
+          enable = true;
+          extensions = {
+            markview-nvim.enable = true;
+          };
+        };
       };
 
       diagnostics = {
