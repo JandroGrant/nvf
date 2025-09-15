@@ -9,8 +9,6 @@
         trouble.enable = true;
       };
 
-      fzf-lua.enable = true;
-
       languages = {
         enableDAP = true;
         enableExtraDiagnostics = true;
