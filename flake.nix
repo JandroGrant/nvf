@@ -10,35 +10,17 @@
   outputs = {
     self,
     nixpkgs,
-    nvf,
     ...
-  }: let
-    darwinSystems = {
-      aarch64 = "aarch64-darwin";
-    };
-
-    linuxSystems = {
-      x86_64 = "x86_64-linux";
-      aarch64 = "aarch64-linux";
-    };
-
-    allSystems = builtins.attrValues darwinSystems ++ builtins.attrValues linuxSystems;
-    forAllSystems = func: (nixpkgs.lib.genAttrs allSystems func);
-  in {
-    lib.neovimConfiguration = {system}:
-      (nvf.lib.neovimConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = [./default.nix];
-      }).neovim;
-
-    packages = forAllSystems (system: {
-      default = self.lib.neovimConfiguration {inherit system;};
-      nvim = self.lib.neovimConfiguration {inherit system;};
-    });
-
-    customNeovim = nvf.lib.neovimConfiguration {
-      inherit nixpkgs;
-      modules = [./default.nix];
+  } @ inputs: {
+    packages."x86_64-linux" = let
+      neovimConfigured = inputs.nvf.lib.neovimConfiguration {
+        inherit (nixpkgs.legacyPackages."x86_64-linux") pkgs;
+        modules = [
+          ./default.nix
+        ];
+      };
+    in {
+      default = neovimConfigured.neovim;
     };
   };
 }
