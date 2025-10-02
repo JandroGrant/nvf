@@ -36,6 +36,9 @@
       nvim = self.lib.neovimConfiguration {inherit system;};
     });
 
-    homeManagerModules.default = self.lib.neovimConfiguration.homeManagerModules.default;
+    customNeovim = nvf.lib.neovimConfiguration {
+      inherit nixpkgs;
+      modules = [./default.nix];
+    };
   };
 }
