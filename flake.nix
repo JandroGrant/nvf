@@ -20,7 +20,9 @@
         ];
       };
     in {
-      config = ./default.nix;
+      lib = {
+        config = ./default.nix;
+      };
       default = neovimConfigured.neovim;
     };
   };
