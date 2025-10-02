@@ -10,12 +10,12 @@
       enable = true;
     };
 
-    theme = {
-      enable = true;
-      name = "oxocarbon";
-      style = "dark";
-      # transparent = true;
-    };
+    # theme = {
+    #   enable = true;
+    #   name = "oxocarbon";
+    #   style = "dark";
+    #   # transparent = true;
+    # };
 
     options = rec {
       cursorlineopt = "both";
